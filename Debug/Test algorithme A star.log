@@ -1,0 +1,6 @@
+﻿  Source.c
+C:\Users\aurel\source\repos\Test algorithme A star\Source.c(101,45): warning C4244: 'fonction' : conversion de 'double' en 'int', perte possible de données
+C:\Users\aurel\source\repos\Test algorithme A star\Source.c(101,46): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\aurel\source\repos\Test algorithme A star\Source.c(102,45): warning C4244: 'fonction' : conversion de 'double' en 'int', perte possible de données
+C:\Users\aurel\source\repos\Test algorithme A star\Source.c(102,46): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+  Test algorithme A star.vcxproj -> C:\Users\aurel\source\repos\Test algorithme A star\Debug\Test algorithme A star.exe
