@@ -1,0 +1,2 @@
+C:\Users\Administrateur\source\repos\Algo Astar IA\Debug\Algo Astar IA.exe
+C:\Users\Administrateur\source\repos\Algo Astar IA\Debug\Algo Astar IA.pdb
