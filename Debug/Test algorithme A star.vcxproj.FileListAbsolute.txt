@@ -1,2 +1,0 @@
-C:\Users\aurel\source\repos\Test algorithme A star\Debug\Test algorithme A star.exe
-C:\Users\aurel\source\repos\Test algorithme A star\Debug\Test algorithme A star.pdb
