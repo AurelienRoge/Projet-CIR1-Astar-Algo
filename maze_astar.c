@@ -25,31 +25,7 @@ void printshortest(close cls[SIZE + 1][SIZE + 1], point start, point end) {
 		currentPosition = (steps[p]->p.y) - 1 + ((steps[p]->p.x) - 1) * taille;
 		compteur++;
 	}
-	printf("The shortest path takes %d moves\n", flag-1);
-	int previousx = start.x;
-	int previousy = start.y;
-	for (i = flag - 1; i >= 0; i--) {
-		printf("(%d,%d)->", steps[i]->p.y, steps[i]->p.x);
-		/*previousx = steps[i]->p.y;
-		previousy = steps[i]->p.x;
-		if (steps[i]->p.y - previousx == 1) {
-			printf("right ");
-		}
-		else if (steps[i]->p.y - previousx == -1) {
-			printf("left ");
-		}
-		else if (steps[i]->p.x - previousx == 1) {
-			printf("up ");
-		}
-		else if (steps[i]->p.x - previousx == -1) {
-			printf("down ");
-		}
-		else {
-			printf("\nbuggued ");
-			printf("x = %d previousx = %d y = %d previous = %d\n", steps[i]->p.y, previousx, steps[i]->p.x, previousy);
-
-		}*/
-	}
+	printf("The shortest path takes %d moves\n", flag-2);
 }
 
 int within(int x, int y) {
@@ -123,7 +99,7 @@ int main() {
 	//On a instauré des murs tout autour qui permettent ainsi d'empecher l'algorithme de sortir de la carte
 	//De ce fait, la taille est augmentée de 2 en abscisse et en ordonnée
 	int maze[SIZE + 2][SIZE + 2] =
-	{
+	{//Juste pour initialiser
 		{ 1,1,1,1,1,1,1,1,1,1 },
 		{ 1,0,0,0,0,0,0,0,0,1 },
 		{ 1,0,0,1,1,0,0,1,0,1 },
@@ -136,22 +112,11 @@ int main() {
 		{ 1,1,1,1,1,1,1,1,1,1 },
 	};
 
-	for (i = 1; i <= taille; i++) {
-		for (j = 1; j <= taille; j++) {
-			printf("%d ", maze[i][j]);
-		}
-		printf("\n");
-	}
-
-	/*f = getshortest(maze, start, end);
-	if (f == 0)
-		printf("This maze has no solution!");
-	*/
+	//Adaptation du système en C au système en JS
 	char* map;
 	map = (char*)malloc(500 * sizeof(int));
 	printf("\nInsert map here : \n");
 	gets(map, sizeof(map), stdin);
-	printf("\n(test) map entered : %s", map);
 	if (map != NULL) {
 		for (int k = 0; k < taille * taille; k++) {
 			for (int i = 0; i < strlen(map); i++) {
@@ -166,12 +131,10 @@ int main() {
 	}
 
 	point start, end;
-	//point de départ(1,1)  point d'arrivée(8,8);
 	start.x = 1;
 	start.y = 1;
 	end.x = taille;
 	end.y = taille;
-	printf("\n(test) map entered : %s\n", map);
 
 	//Convertir notre tableau en tableau à deux dimensions
 	int compteur = 0;
@@ -181,7 +144,6 @@ int main() {
 			compteur++;
 		}
 	}
-	printf("\n");
 
 	for (int i = 0; i < taille + 2; i++) {
 		for (int j = 0; j < taille + 2; j++) {
@@ -194,12 +156,6 @@ int main() {
 		}
 	}
 
-	for (i = 0; i <= taille+1; i++) {
-		for (j = 0; j <= taille+1; j++) {
-			printf("%d ", maze[i][j]);
-		}
-		printf("\n");
-	}
 	f = getshortest(maze, start, end);
 	if (f == 0) {
 		printf("This maze has no solution!");
@@ -208,12 +164,30 @@ int main() {
 	for (int i = 0; i < tmpGlobal; i++) {
 		positionsByOrder[i] = positionsByOrder[i + 1];
 	}
-	for (int i = 0; i < tmpGlobal-1; i++) {
-		printf("%d ", positionsByOrder[i]);
+
+	printf("\nFollow these moves in this exact order\n");
+	int previousx = 0;
+	int currentx = 0;
+	int previousy = 0;
+	int currenty = 0;
+	for (int i = 0; i < tmpGlobal + 2; i++) {
+		previousx = currentx;
+		previousy = currenty;
+		currenty = posToY(positionsByOrder[i]);
+		currentx = posToX(positionsByOrder[i], currenty);
+		if (currentx - previousx == 1) {
+			printf("right ");
+		}
+		else if (currentx - previousx == -1) {
+			printf("left ");
+		}
+		else if (currenty - previousy == 1) {
+			printf("down ");
+		}
+		else if (currenty - previousy == -1) {
+			printf("up ");
+		}
 	}
-	printf("follow these moves in this exact order");
-	for (int i = 0; i < tmpGlobal - 1; i++) {
-		printf("%d ", positionsByOrder[i]);
-	}
+	printf("\n");
 	return 0;
 }

@@ -6,7 +6,6 @@
 
 
 # define SIZE 20//TAILLE
-# define N 8//TAILLE
 
 int taille = 8;
 int positionsByOrder[400];
@@ -19,6 +18,16 @@ void printTab(char tab[], int size) {
 		}
 		printf("%c ", tab[i]);
 	}
+}
+
+int posToY(int pos) {
+	int y = pos / taille;
+	return y;
+}
+
+int posToX(int pos, int y) {
+	int x = pos - y * taille;
+	return x;
 }
 
 

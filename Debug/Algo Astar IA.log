@@ -1,6 +1,8 @@
 ﻿  maze_astar.c
-C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(153,6): warning C4013: 'gets' non défini(e) ; extern retournant int pris par défaut
-C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(157,22): warning C4018: '<' : incompatibilité signed/unsigned
-C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(159,24): warning C4018: '<' : incompatibilité signed/unsigned
-C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(165,29): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(119,6): warning C4013: 'gets' non défini(e) ; extern retournant int pris par défaut
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(122,22): warning C4018: '<' : incompatibilité signed/unsigned
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(124,24): warning C4018: '<' : incompatibilité signed/unsigned
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(130,29): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(98,9): warning C4101: 'j' : variable locale non référencée
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(98,6): warning C4101: 'i' : variable locale non référencée
   Algo Astar IA.vcxproj -> C:\Users\Administrateur\source\repos\Algo Astar IA\Debug\Algo Astar IA.exe
