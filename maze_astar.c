@@ -5,7 +5,7 @@
 #include "star_priQueue.h"
 
 
-void printshortest(close cls[M + 1][N + 1], point start, point end) {
+void printshortest(close cls[SIZE + 1][SIZE + 1], point start, point end) {
 	close* steps[MAXSIZE];
 	int flag = 1;
 	int i;
@@ -19,18 +19,19 @@ void printshortest(close cls[M + 1][N + 1], point start, point end) {
 	}
 	printf("The shortest path takes %d moves\n", flag);
 	for (i = flag - 1; i >= 0; i--) {
-		printf("(%d,%d)->", steps[i]->p.x, steps[i]->p.y);
+		//if(steps[i-1]->p.y)
+		printf("(%d,%d)->", steps[i]->p.y, steps[i]->p.x);
 	}
 }
 
 int within(int x, int y) {
-	if (x >= 1 && x <= M && y >= 1 && y <= N)
+	if (x >= 1 && x <= taille && y >= 1 && y <= taille)
 		return 1;
 	else
 		return 0;
 }
-int getshortest(int maze[M + 2][N + 2], point start, point end) {
-	close cls[M + 1][N + 1];
+int getshortest(int maze[SIZE + 2][SIZE + 2], point start, point end) {
+	close cls[SIZE+ 1][SIZE + 1];
 	open op;
 	close* c;
 	int x0, y0;//position actuelle
@@ -91,9 +92,9 @@ int main() {
 
 	int f;
 	int i, j;
-	//On a instauré des murs tout autour qui permettent ansi d'empecher l'algorithme de sortir de la carte
+	//On a instauré des murs tout autour qui permettent ainsi d'empecher l'algorithme de sortir de la carte
 	//De ce fait, la taille est augmentée de 2 en abscisse et en ordonnée
-	int maze[M + 2][N + 2] =
+	int maze[SIZE + 2][SIZE + 2] =
 	{
 		{ 1,1,1,1,1,1,1,1,1,1 },
 		{ 1,0,0,0,0,0,0,0,0,1 },
@@ -107,23 +108,74 @@ int main() {
 		{ 1,1,1,1,1,1,1,1,1,1 },
 	};
 
-	for (i = 1; i <= M; i++) {
-		for (j = 1; j <= N; j++) {
+	for (i = 1; i <= taille; i++) {
+		for (j = 1; j <= taille; j++) {
 			printf("%d ", maze[i][j]);
 		}
 		printf("\n");
 	}
 
-	point start, end;
-	//point de départ(1,1)  point d'arrivée(7,7);
-	start.x = 1;
-	start.y = 1;
-	end.x = 8;
-	end.y = 8;
-
-	f = getshortest(maze, start, end);
+	/*f = getshortest(maze, start, end);
 	if (f == 0)
 		printf("This maze has no solution!");
+	*/
+	char* map;
+	map = (char*)malloc(500 * sizeof(int));
+	printf("\nInsert map here : \n");
+	gets(map, sizeof(map), stdin);
+	printf("\n(test) map entered : %s", map);
+	if (map != NULL) {
+		for (int k = 0; k < taille * taille; k++) {
+			for (int i = 0; i < strlen(map); i++) {
+				if (map[i] == 44) {
+					for (int j = i; j < strlen(map); j++) {
+						map[j] = map[j + 1];
+					}
+				}
+			}
+		}
+		taille = sqrt(strlen(map));
+	}
+
+	point start, end;
+	//point de départ(1,1)  point d'arrivée(8,8);
+	start.x = 1;
+	start.y = 1;
+	end.x = taille;
+	end.y = taille;
+	printf("\n(test) map entered : %s\n", map);
+
+	//Convertir notre tableau en tableau à deux dimensions
+	int compteur = 0;
+	for (int i = 1; i < taille + 1; i++) {
+		for (int j = 1; j < taille + 1; j++) {
+			maze[i][j] = map[compteur];
+			compteur++;
+		}
+	}
+	printf("\n");
+
+	for (int i = 0; i < taille + 2; i++) {
+		for (int j = 0; j < taille + 2; j++) {
+			if (maze[i][j] == 'B' || maze[i][j] == 'W' || j == 0 ||j == taille + 1 || i == 0 || i == taille + 1) {
+				maze[i][j] = 1;
+			}
+			else {
+				maze[i][j] = 0;
+			}
+		}
+	}
+
+	for (i = 0; i <= taille+1; i++) {
+		for (j = 0; j <= taille+1; j++) {
+			printf("%d ", maze[i][j]);
+		}
+		printf("\n");
+	}
+	f = getshortest(maze, start, end);
+	if (f == 0) {
+		printf("This maze has no solution!");
+	}
 
 
 	return 0;

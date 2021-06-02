@@ -2,10 +2,22 @@
 #include "stdio.h"
 #include "malloc.h"
 #include "math.h"
+#include "string.h"
 
 
-# define M 8//TAILLE
+# define SIZE 20//TAILLE
 # define N 8//TAILLE
+
+int taille = 8;
+
+void printTab(char tab[], int size) {
+	for (int i = 0; i < size * size; i++) {
+		if (i % size == 0) {
+			printf("%d\n", i - 1);
+		}
+		printf("%c ", tab[i]);
+	}
+}
 
 
 typedef struct node1 {
@@ -21,10 +33,10 @@ typedef struct node2 {
 }close;//Liste fermée (closedList)
 
 //Initialisation de la liste fermée
-void initClose(close cls[M + 1][N + 1], int startx, int starty, int endx, int endy) {
+void initClose(close cls[SIZE + 1][SIZE + 1], int startx, int starty, int endx, int endy) {
 	int i, j;
-	for (i = 1; i <= M; i++) {
-		for (j = 1; j <= N; j++) {
+	for (i = 1; i <= taille; i++) {
+		for (j = 1; j <= taille; j++) {
 			cls[i][j].p.x = i;
 			cls[i][j].p.y = j;
 			cls[i][j].visited = 0;

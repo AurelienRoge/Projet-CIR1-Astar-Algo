@@ -1,2 +1,6 @@
 ﻿  maze_astar.c
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(125,6): warning C4013: 'gets' non défini(e) ; extern retournant int pris par défaut
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(129,22): warning C4018: '<' : incompatibilité signed/unsigned
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(131,24): warning C4018: '<' : incompatibilité signed/unsigned
+C:\Users\Administrateur\source\repos\Algo Astar IA\maze_astar.c(137,29): warning C4244: '=' : conversion de 'double' en 'int', perte possible de données
   Algo Astar IA.vcxproj -> C:\Users\Administrateur\source\repos\Algo Astar IA\Debug\Algo Astar IA.exe

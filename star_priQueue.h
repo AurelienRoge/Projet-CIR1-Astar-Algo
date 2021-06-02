@@ -2,7 +2,7 @@
 
 #include "stdio.h"
 #include "star_1.h"
-#define MAXSIZE 100
+#define MAXSIZE 400
 
 typedef struct node3 {
 	int len;
@@ -15,7 +15,7 @@ void initOpen(open* op) {
 }
 
 //On charge des chemins à tester dans la liste ouverte
-void pushOpen(open* op, close cls[M + 1][N + 1], int x, int y, int g) {
+void pushOpen(open* op, close cls[SIZE + 1][SIZE + 1], int x, int y, int g) {
 	int i, minFlag = op->len;
 	close* t;
 	cls[x][y].G = g;
