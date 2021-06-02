@@ -17,10 +17,38 @@ void printshortest(close cls[SIZE + 1][SIZE + 1], point start, point end) {
 		if (steps[i]->p.x == start.x && steps[i]->p.y == start.y)
 			break;
 	}
-	printf("The shortest path takes %d moves\n", flag);
+	tmpGlobal = flag;
+	int compteur = 0;
+	int currentPosition = 0;
+	for (int p = flag - 1; p >= 0; p--) {
+		positionsByOrder[compteur] = currentPosition;
+		currentPosition = (steps[p]->p.y) - 1 + ((steps[p]->p.x) - 1) * taille;
+		compteur++;
+	}
+	printf("The shortest path takes %d moves\n", flag-1);
+	int previousx = start.x;
+	int previousy = start.y;
 	for (i = flag - 1; i >= 0; i--) {
-		//if(steps[i-1]->p.y)
 		printf("(%d,%d)->", steps[i]->p.y, steps[i]->p.x);
+		/*previousx = steps[i]->p.y;
+		previousy = steps[i]->p.x;
+		if (steps[i]->p.y - previousx == 1) {
+			printf("right ");
+		}
+		else if (steps[i]->p.y - previousx == -1) {
+			printf("left ");
+		}
+		else if (steps[i]->p.x - previousx == 1) {
+			printf("up ");
+		}
+		else if (steps[i]->p.x - previousx == -1) {
+			printf("down ");
+		}
+		else {
+			printf("\nbuggued ");
+			printf("x = %d previousx = %d y = %d previous = %d\n", steps[i]->p.y, previousx, steps[i]->p.x, previousy);
+
+		}*/
 	}
 }
 
@@ -176,7 +204,16 @@ int main() {
 	if (f == 0) {
 		printf("This maze has no solution!");
 	}
-
-
+	printf("\n");
+	for (int i = 0; i < tmpGlobal; i++) {
+		positionsByOrder[i] = positionsByOrder[i + 1];
+	}
+	for (int i = 0; i < tmpGlobal-1; i++) {
+		printf("%d ", positionsByOrder[i]);
+	}
+	printf("follow these moves in this exact order");
+	for (int i = 0; i < tmpGlobal - 1; i++) {
+		printf("%d ", positionsByOrder[i]);
+	}
 	return 0;
 }

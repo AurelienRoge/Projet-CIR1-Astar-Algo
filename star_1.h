@@ -9,6 +9,8 @@
 # define N 8//TAILLE
 
 int taille = 8;
+int positionsByOrder[400];
+int tmpGlobal;
 
 void printTab(char tab[], int size) {
 	for (int i = 0; i < size * size; i++) {
